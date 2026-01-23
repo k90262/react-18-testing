@@ -2,6 +2,12 @@ import styles from '@/pages/index.module.css'
 
 import {useState, useEffect} from 'react'
 
+const ParagraphCount = ({count}) => {
+  return <div className={styles.paragraph_counter}>
+    This page contains {count} paragraphs.
+  </div>;
+};
+
 const ParagraphCounter = () => {
   let [paras, setP] = useState(0);
   useEffect(()=>{
@@ -9,9 +15,7 @@ const ParagraphCounter = () => {
         .filter(p => p.innerText.length > 0)
         .length);
   });
-  return <div className={styles.paragraph_counter}>
-    This page contains {paras} paragraphs.
-  </div>;
+  return <ParagraphCount count={paras} />;
 };
 
 export default function Home() {
