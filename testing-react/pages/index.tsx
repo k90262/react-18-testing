@@ -1,6 +1,7 @@
 import styles from '@/pages/index.module.css'
-
 import {useState, useEffect} from 'react'
+import { countParagraphs } from 'services/document_reflection';
+
 
 const ParagraphCount = ({count}) => {
   return <div className={styles.paragraph_counter}>
@@ -11,9 +12,7 @@ const ParagraphCount = ({count}) => {
 const ParagraphCounter = () => {
   let [paras, setP] = useState(0);
   useEffect(()=>{
-    setP(Array.prototype.slice.call(document.querySelectorAll('p'))
-        .filter(p => p.innerText.length > 0)
-        .length);
+    setP(countParagraphs());
   });
   return <ParagraphCount count={paras} />;
 };
